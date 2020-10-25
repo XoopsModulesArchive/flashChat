@@ -1,0 +1,58 @@
+**********************************
+PHP-NUKE INTEGRATION FOR FLASHCHAT
+**********************************
+
+This file describes the steps required to integrate FlashChat into a PHP-Nuke environment. The normal installation procedure, as described in the FlashChat readme.txt file, does NOT apply in this case.
+
+YOU MUST FOLLOW THESE STEPS PRECISELY!
+
+STEP 1:
+Rename the "chat" folder that comes with the FlashChat distribution to "FlashChat". If this folder is already named "FlashChat" then you may skip this step.
+
+STEP 2:
+Delete the "index.php" file, and then rename the "index_phpnuke.php" file to "index.php".
+
+STEP 3:
+Open the "common.php" file located in the "inc" directory of your FlashChat distribution. You should be able to use any plain-text editor, like TextPad (www.textpad.com) or Windows Notepad. Find the group of PHP commands that relate to CMS integration. They will have the "cmses/" label in them:
+
+//include_once(INC_DIR . 'cmses/defaultCMS.php');
+//include_once(INC_DIR . 'cmses/statelessCMS.php');
+include_once(INC_DIR . 'cmses/phpNukeCMS.php');
+//include_once(INC_DIR . 'cmses/postNukeCMS.php');
+... etc...
+
+As shown above, you must put double-slashes before ALL CMSES except for the "phpNukeCMS" line. This will deactivate all other CMS support except for PHP-Nuke. Double-slashes are how programmers "comment-out" a line, thus deactivating it.
+
+Thus, ONLY this line will NOT be commented:
+
+include_once(INC_DIR . 'cmses/phpNukeCMS.php');
+
+
+STEP 4:
+Upload all files in the FlashChat folder to your "modules" directory in PHP-Nuke. Thus, the directory structure for PHP-Nuke should look something like this:
+
+/{path to PHP-Nuke}/modules/FlashChat/index.php (formerly index_phpnuke.php)
+/{path to PHP-Nuke}/modules/FlashChat/inc (folder)
+/{path to PHP-Nuke}/modules/FlashChat/images (folder)
+
+etc.
+
+STEP 5:
+Using your web browser, open the install.php file, located at:
+
+http://www.yourserver.com/{path to PHP-Nuke}/modules/FlashChat/install.php
+
+This file will use the MySQL options that your current PHP-Nuke installation uses, and it will create the necessary table structures in MySQL using the same table prefix that PHP-Nuke uses. If FlashChat is able to read your current PHP-Nuke settings correctly, then this form should be auto-populated for you. Do NOT change anything in this form - accept all the default values.
+
+STEP 6:
+You must now add the FlashChat module to your system, using the PHP-Nuke "modules" panel. The module must be 'activated' before it can be used. Please refer to your PHP-Nuke documentation if you are unsure of how to do this.
+
+STEP 7:
+Login to PHP-Nuke as a normal user or as a moderator, click on the FlashChat module link, and start chatting!
+
+If you notice any errors in these steps, or have any suggestions for improvement, please post a message on the TUFaT.com support forum, located at http://www.tufat.com
+
+Thank you for using FlashChat!
+
+(c) 1999-2004 Darren G. Gates
+

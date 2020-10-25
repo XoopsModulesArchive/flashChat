@@ -1,0 +1,30 @@
+GUIDE TO THEME CREATION AND EDITING
+This file will step you through the creation of a new theme for FlashChat. Similiar steps would be taken to edit an existing theme. Suppose that you wish to create a theme called "tropical". The theme will have a tropics/paradise feel to it, with various ocean/beach/sand colors for the color scheme.
+1) First, COPY an existing theme's PHP file - for example, the navy.php file - and give it a new name like "tropical.php". This should be placed in the inc/themes/ folder alongside all of the other theme files.
+2) Now, open tropical.php in a text editor, like TextPad (www.textpad.com), or the plain text editor of your choice. Do NOT use Microsoft Word or other word processors.
+3) On the second and third lines of "tropical.php", change the name "navy" to "tropical", and change the background image name from "images/navy.jpg" to "images/tropical.jpg". Thus, the start of your file should look something like:
+<?php
+$GLOBALS['config']['themes']['tropical'] = array(
+'name' => 'tropical',
+'dialogBackgroundImage' => 'images/tropical.jpg',
+'backgroundImage' => 'images/tropical.jpg',
+.....
+Please check for PHP syntax errors when editing, or FlashChat will not load properly. In other words, commas and quotation marks should be in the correct places, etc. This is the #1 most common cause of incorrect theme creation.
+4) Now, you can edit some of the color parameters to make the theme look more tropical. Try making the following changes to the theme colors:
+a) "background" property to 0x009CA0
+b) "roomBackground" property to 0x000099
+c) "button" property to 0x000099
+d) "bodyText" property to 0xFFFF99
+e) "enterRoomNotify" property to 0xFFFF99
+Of course, you can change other color properties later. For example, you might also want to change the publicLogBackground and privateLogBackground colors to be more light-blue/aqua, or perhaps change the room text color to an off-yellow so that it looks more "sandy". 
+5) We now have to create the "tropical.jpg" background image. For your convenience, I have created an image called "tropical.jpg" in the FlashChat "images" folder to get you started. Normally, you would need to create the .jpg image for the background yourself. I personally use the Google image search feature very often to find such images. As a simple trick, if you put "1024" in the search then Google usually yields many 1024 x 768 images. 
+Please note that when creating background images, you should:
+a) Strive for images under 40KB. All images that come with the FlashChat distribution are below this size limit. This is not a requirement, but it will save bandwidth and make the image loading very fast. Of course, your image might be fairly low-resolution, but since it's a background image that should not be a problem.
+b) Use only non-progressive JPG images. This is a requirement. Your theme will not work if a progressive JPG is used, or if an image format other than the JPG file format is used. I recommend the use of Macromedia Fireworks to create the image.
+c) Aim for 1024 x 768 px. This is the most common screen resolution in the world. 800 x 600 is also very common, but for FlashChat it's actually better to design for a higher screen resolution, not a lower screen resolution, since users with a higher resolution may see a cut-off image if you design for 800 x 600 px. It would also be acceptable to use an even high resolution, but this might excessively increase the size in KB.
+6) Open the "inc/config.php" file (the config.php file located in the "inc" folder), and add this line to the themes section:
+include_once(INC_DIR . 'themes/tropical.php');
+The themes section of config.php has //THEMES: ... before it. Adding this line will tell FlashChat to look for the tropical theme when loading.
+7) Clear all of your web browser's cookies, and then reload FlashChat. You should see your theme in the "skins" window. If you don't, or if FlashChat fails to load, then most likely...
+a) you have a PHP syntax error in either config.php or tropical.php, or 
+b) your tropical image is not progressive JPG (did you use the tropical.jpg file that was provided to you?)

@@ -1,0 +1,45 @@
+*******************************
+XOOPS INTEGRATION FOR FLASHCHAT
+*******************p************
+
+This file describes the steps required to integrate FlashChat into a Xoops environment. The normal installation procedure, as described in the FlashChat readme.txt file, does NOT apply in this case.
+
+YOU MUST FOLLOW THESE STEPS PRECISELY!
+
+STEP 1:
+Create a subfolder in the modules directory of Xoops, called "flashChat". Please note that the folder name MUST be "flashChat" (i.e., it's case-sensitive).
+
+STEP 2:
+Delete the "index.php" file, and then rename the "index_xoops.php" file to "index.php".
+
+STEP 3:
+Open the "common.php" file located in the "inc" directory of your FlashChat distribution. You should be able to use any plain-text editor, like TextPad (www.textpad.com) or Windows Notepad. Find the group of PHP commands that relate to CMS integration. They will have the "cmses/" label in them:
+
+//include_once(INC_DIR . 'cmses/defaultCMS.php');
+//include_once(INC_DIR . 'cmses/statelessCMS.php');
+//include_once(INC_DIR . 'cmses/phpNukeCMS.php');
+//include_once(INC_DIR . 'cmses/postNukeCMS.php');
+//include_once(INC_DIR . 'cmses/xoopsCMS.php' );
+... etc...
+
+As shown above, you must put double-slashes before ALL CMSES except for the "xoopsCMS" line. This will deactivate all other CMS support except for Xoops. Double-slashes are how programmers "comment-out" a line, thus deactivating it.
+
+Thus, ONLY this line will NOT be commented:
+
+include_once(INC_DIR . 'cmses/xoopsCMS.php');
+
+STEP 4:
+Upload all files in the FlashChat folder to your "modules" directory in Xoops. Please make sure that you have the "sql" and "templates" subdirectories copied, too!
+
+STEP 5:
+Login as the Xoops administrator and go to module administration page - you will see FlashChat module in the list. Install it and go to homepage of the site to see it. Now, FlashChat must run from this menu.
+
+
+If you notice any errors in these steps, or have any suggestions for improvement, please post a message on the TUFaT.com support forum, located at http://www.tufat.com
+
+Thank you for using FlashChat!
+
+(c) 1999-2004 Darren G. Gates
+
+
+

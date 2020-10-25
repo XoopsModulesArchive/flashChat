@@ -1,0 +1,66 @@
+***********************************
+POST-NUKE INTEGRATION FOR FLASHCHAT
+***********************************
+
+This file describes the steps required to integrate FlashChat into a POST-Nuke environment. The normal installation procedure, as described in the FlashChat readme.txt file, does NOT apply in this case.
+
+YOU MUST FOLLOW THESE STEPS PRECISELY!
+
+STEP 1:
+Rename the "chat" folder that comes with the FlashChat distribution to "FlashChat". If this folder is already named "FlashChat" then you may skip this step.
+
+STEP 2:
+Delete the "index.php" file, and then rename the "index_postnuke.php" file to "index.php".
+
+STEP 3:
+Open the "common.php" file located in the "inc" directory of your FlashChat distribution. You should be able to use any plain-text editor, like TextPad (www.textpad.com) or Windows Notepad. Find the group of PHP commands that relate to CMS integration. They will have the "cmses/" label in them:
+
+//include_once(INC_DIR . 'cmses/defaultCMS.php');
+//include_once(INC_DIR . 'cmses/statelessCMS.php');
+//include_once(INC_DIR . 'cmses/phpNukeCMS.php');
+include_once(INC_DIR . 'cmses/postNukeCMS.php');
+... etc...
+
+As shown above, you must put double-slashes before ALL CMSES except for the "postNukeCMS" line. This will deactivate all other CMS support except for POST-Nuke. Double-slashes are how programmers "comment-out" a line, thus deactivating it.
+
+Thus, ONLY this line will NOT be commented:
+
+include_once(INC_DIR . 'cmses/postNukeCMS.php');
+
+STEP 4:
+Upload all files in the FlashChat folder to your "modules" directory in POST-Nuke. Thus, the directory structure for POST-Nuke should look something like this:
+
+/{path to POST-Nuke}/modules/FlashChat/index.php (formerly index_postnuke.php)
+/{path to POST-Nuke}/modules/FlashChat/inc (folder)
+/{path to POST-Nuke}/modules/FlashChat/images (folder)
+
+etc.
+
+After uploading, check the config.srv.php file to ensure that it is writeable. It must have at least 666 mode (writable mode). If you are on a *nix server, you can use the chmod command for this.
+
+STEP 5:
+Start POST-Nuke and login as the administrator.
+
+STEP 6:
+Go to Administration -> Modules and click "Regenerate" to see the FlashChat module in the list. Click on the "Initialize" link.  This will create the necessary tables in MySQL for FlashChat, and will write to the config.srv.php (remember: this file MUST be writeable!). 
+
+STEP 7:
+Click on "Activate" to activate the FlashChat module.
+
+STEP 7:
+Go to Administration -> Blocks, and then choose "Edit" for the Main Menu block.
+
+STEP 8:
+Add this information to a new block (at the bottom of the Content list), and then press "Commit Changes".
+
+FlashChat          [FlashChat]           Allow chat on this site
+
+STEP 9:
+Finally, click on the FlashChat link in the main menu. FlashChat should now be integrated into your POST-Nuke template.
+
+If you notice any errors in these steps, or have any suggestions for improvement, please post a message on the TUFaT.com support forum, located at http://www.tufat.com
+
+Thank you for using FlashChat!
+
+(c) 1999-2004 Darren G. Gates
+
